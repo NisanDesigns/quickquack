@@ -294,24 +294,44 @@ nav a:hover {
 }
 
 .author-info {
-    display: grid;
-    grid-template-columns: 300px 1fr;
-    gap: 2rem;
+    display: flex;
     align-items: center;
+    gap: 2rem;
+    padding: 2rem;
+    background: var(--feature-bg);
+    border-radius: 15px;
 }
 
 .author-image {
-    width: 100%;
-    height: 400px;
-    background-color: var(--light-color);
-    border-radius: 10px;
-    overflow: hidden;
+    flex-shrink: 0;
 }
 
-.image-placeholder {
-    width: 100%;
-    height: 100%;
-    background-color: var(--light-color);
+.author-photo {
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 4px solid var(--accent-color);
+}
+
+.author-bio {
+    flex-grow: 1;
+}
+
+.author-bio h3 {
+    color: var(--accent-color);
+    margin-bottom: 1rem;
+}
+
+@media (max-width: 768px) {
+    .author-info {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .author-image {
+        margin-bottom: 1rem;
+    }
 }
 
 /* Purchase Section */
