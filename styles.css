@@ -66,6 +66,26 @@ nav a:hover {
     color: var(--primary-color);
 }
 
+/* Mobile Navigation */
+.mobile-menu-btn {
+    display: none;
+    background: none;
+    border: none;
+    color: var(--text-color);
+    font-size: 1.5rem;
+    cursor: pointer;
+    padding: 0.5rem;
+}
+
+.mobile-menu-btn span {
+    display: block;
+    width: 25px;
+    height: 3px;
+    background: var(--text-color);
+    margin: 5px 0;
+    transition: 0.3s;
+}
+
 /* Hero Section with Slider */
 #hero {
     padding: 60px 0;
@@ -316,19 +336,135 @@ footer {
 
 /* Responsive Design */
 @media (max-width: 768px) {
+    /* Navigation */
+    .mobile-menu-btn {
+        display: block;
+    }
+
     nav ul {
         display: none;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        background-color: var(--light-color);
+        flex-direction: column;
+        padding: 1rem 0;
+        text-align: center;
     }
-    
+
+    nav ul.active {
+        display: flex;
+    }
+
+    nav ul li {
+        margin: 1rem 0;
+    }
+
+    /* Hero Section */
+    #hero {
+        height: 60vh;
+    }
+
+    .slide-content {
+        width: 95%;
+        padding: 1rem;
+    }
+
+    .slide-content h1 {
+        font-size: 1.8rem;
+    }
+
+    .slide-content h2 {
+        font-size: 1.2rem;
+    }
+
+    /* Sections */
+    .book-features,
+    .benefits-grid,
+    .purchase-options {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+
+    /* Author Section */
     .author-info {
         grid-template-columns: 1fr;
     }
-    
+
+    .author-image {
+        height: 300px;
+    }
+
+    /* Footer */
+    .footer-content {
+        grid-template-columns: 1fr;
+        text-align: center;
+    }
+
+    .social-links {
+        justify-content: center;
+    }
+
     .newsletter-form {
         flex-direction: column;
+        align-items: center;
+        gap: 1rem;
     }
-    
-    .btn {
+
+    .newsletter-form input,
+    .newsletter-form button {
         width: 100%;
+        max-width: 300px;
+    }
+}
+
+/* Small Mobile Devices */
+@media (max-width: 480px) {
+    .container {
+        padding: 0 15px;
+    }
+
+    .slide-content h1 {
+        font-size: 1.5rem;
+    }
+
+    .slide-content h2 {
+        font-size: 1rem;
+    }
+
+    .btn {
+        padding: 0.6rem 1.2rem;
+        font-size: 0.9rem;
+    }
+
+    h2 {
+        font-size: 1.8rem;
+    }
+
+    h3 {
+        font-size: 1.3rem;
+    }
+
+    .feature,
+    .benefit,
+    .purchase-card {
+        padding: 1.5rem;
+    }
+}
+
+/* Tablet Devices */
+@media (min-width: 769px) and (max-width: 1024px) {
+    .container {
+        max-width: 90%;
+    }
+
+    .book-features,
+    .benefits-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .author-info {
+        grid-template-columns: 250px 1fr;
     }
 }

@@ -78,3 +78,30 @@ slider.addEventListener('mouseleave', () => {
 
 // Initialize the slider
 updateSlider();
+
+// Mobile Menu Functionality
+const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+const navMenu = document.querySelector('nav ul');
+
+if (mobileMenuBtn) {
+    mobileMenuBtn.addEventListener('click', () => {
+        navMenu.classList.toggle('active');
+        mobileMenuBtn.classList.toggle('active');
+    });
+
+    // Close menu when clicking outside
+    document.addEventListener('click', (e) => {
+        if (!e.target.closest('nav')) {
+            navMenu.classList.remove('active');
+            mobileMenuBtn.classList.remove('active');
+        }
+    });
+
+    // Close menu when clicking a link
+    navMenu.querySelectorAll('a').forEach(link => {
+        link.addEventListener('click', () => {
+            navMenu.classList.remove('active');
+            mobileMenuBtn.classList.remove('active');
+        });
+    });
+}
