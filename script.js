@@ -30,3 +30,51 @@ window.addEventListener('scroll', function() {
         nav.style.boxShadow = '0 2px 5px rgba(0,0,0,0.1)';
     }
 });
+
+// Hero Slider Functionality
+const slider = document.querySelector('.slider');
+const slides = document.querySelectorAll('.slide');
+const dots = document.querySelectorAll('.slider-dot');
+let currentSlide = 0;
+const slideInterval = 5000; // Change slide every 5 seconds
+
+function updateSlider() {
+    slider.style.transform = `translateX(-${currentSlide * 100}%)`;
+    
+    // Update dots
+    dots.forEach((dot, index) => {
+        dot.classList.toggle('active', index === currentSlide);
+    });
+}
+
+function nextSlide() {
+    currentSlide = (currentSlide + 1) % slides.length;
+    updateSlider();
+}
+
+// Set up automatic sliding
+let slideTimer = setInterval(nextSlide, slideInterval);
+
+// Add click handlers for dots
+dots.forEach((dot, index) => {
+    dot.addEventListener('click', () => {
+        currentSlide = index;
+        updateSlider();
+        
+        // Reset the timer when manually changing slides
+        clearInterval(slideTimer);
+        slideTimer = setInterval(nextSlide, slideInterval);
+    });
+});
+
+// Pause slider on hover
+slider.addEventListener('mouseenter', () => {
+    clearInterval(slideTimer);
+});
+
+slider.addEventListener('mouseleave', () => {
+    slideTimer = setInterval(nextSlide, slideInterval);
+});
+
+// Initialize the slider
+updateSlider();
