@@ -7,7 +7,9 @@
     --text-color: #FFFFFF;      /* White for text on dark backgrounds */
     --text-dark: #1A1A1A;       /* Dark text for light backgrounds */
     --footer-color: #1B5E20;    /* Darker green for footer */
-    --feature-bg: rgba(46, 125, 50, 0.85);  /* Semi-transparent dark green */
+    --feature-bg: rgba(129, 199, 132, 0.85);  /* Semi-transparent lighter green */
+    --benefits-section-bg: rgba(76, 175, 80, 0.8);  /* Medium green for benefits section with 80% opacity */
+    --light-gold: #FFE082;      /* Lighter gold for headings */
 }
 
 * {
@@ -210,30 +212,27 @@ nav a:hover {
     margin-top: 2rem;
 }
 
-.feature {
+.feature, .benefit {
     background: var(--feature-bg);
     border-radius: 15px;
     padding: 2rem;
     margin: 1rem 0;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    backdrop-filter: blur(5px);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    color: var(--text-color);
+    transition: transform 0.3s ease;
 }
 
-.feature:hover {
+.feature:hover, .benefit:hover {
     transform: translateY(-5px);
     box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
-    background: rgba(46, 125, 50, 0.95);
+    background: rgba(129, 199, 132, 0.95);
 }
 
-.feature h3 {
-    color: var(--accent-color);
+.feature h3, .benefit h3 {
+    color: var(--light-gold);
     margin-bottom: 1rem;
     font-size: 1.5rem;
 }
 
-.feature i {
+.feature i, .benefit i {
     color: var(--accent-color);
     font-size: 2.5rem;
     margin-bottom: 1.5rem;
@@ -241,8 +240,9 @@ nav a:hover {
 
 /* Benefits Section */
 #benefits {
-    background-color: var(--dark-color);
+    background: var(--benefits-section-bg);
     padding: 80px 0;
+    position: relative;
 }
 
 .benefits-grid {
@@ -257,7 +257,7 @@ nav a:hover {
     border-radius: 15px;
     padding: 2rem;
     margin: 1rem 0;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    transition: transform 0.3s ease;
     backdrop-filter: blur(5px);
     border: 1px solid rgba(255, 255, 255, 0.1);
     color: var(--text-color);
@@ -267,11 +267,11 @@ nav a:hover {
 .benefit:hover {
     transform: translateY(-5px);
     box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
-    background: rgba(46, 125, 50, 0.95);
+    background: rgba(129, 199, 132, 0.95);
 }
 
 .benefit h3 {
-    color: var(--accent-color);
+    color: var(--light-gold);
     margin-bottom: 1rem;
     font-size: 1.5rem;
 }
@@ -319,160 +319,44 @@ nav a:hover {
 }
 
 .author-bio h3 {
-    color: var(--accent-color);
+    color: var(--light-gold);
     margin-bottom: 1rem;
 }
 
 @media (max-width: 768px) {
-    .author-info {
+    .mobile-menu-btn {
+        display: block;
+    }
+
+    nav ul {
+        background-color: var(--dark-color);
         flex-direction: column;
-        text-align: center;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100vh;
+        justify-content: center;
+        align-items: center;
+        transform: translateX(100%);
+        transition: transform 0.3s ease-in-out;
+        z-index: 999;
     }
 
-    .author-image {
-        margin-bottom: 1rem;
+    nav ul.active {
+        transform: translateX(0);
+    }
+
+    nav a {
+        font-size: 1.5rem;
+        margin: 1rem 0;
+    }
+
+    .benefits-grid {
+        grid-template-columns: 1fr; /* Stack benefits vertically on mobile */
     }
 }
 
-/* Purchase Section */
-#purchase {
-    padding: 80px 0;
-    position: relative;
-    background: rgba(27, 94, 32, 0.8); /* Darker green with transparency */
-    backdrop-filter: blur(10px);
-}
-
-.purchase-options {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 2rem;
-    margin-top: 2rem;
-}
-
-.purchase-card {
-    background: rgba(255, 255, 255, 0.1);
-    border-radius: 15px;
-    padding: 2rem;
-    backdrop-filter: blur(5px);
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.purchase-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
-}
-
-.purchase-card ul {
-    list-style: none;
-    margin: 1.5rem 0;
-}
-
-.purchase-card li {
-    margin: 0.5rem 0;
-}
-
-/* Buttons */
-.btn {
-    display: inline-block;
-    padding: 0.8rem 1.5rem;
-    border-radius: 5px;
-    text-decoration: none;
-    font-weight: 600;
-    transition: all 0.3s ease;
-}
-
-.btn.primary {
-    background-color: var(--primary-color);
-    color: var(--text-color);
-}
-
-.btn.secondary {
-    background-color: transparent;
-    border: 2px solid var(--text-color);
-    color: var(--text-color);
-}
-
-.btn:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 4px 6px rgba(0,0,0,0.2);
-}
-
-/* Footer */
-footer {
-    background-color: var(--footer-color);
-    color: var(--text-color);
-    padding: 3rem 0;
-    margin-top: 4rem;
-}
-
-.footer-content {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 2rem;
-    margin-bottom: 2rem;
-}
-
-.footer-section h4 {
-    margin-bottom: 1rem;
-}
-
-.social-links {
-    display: flex;
-    gap: 1rem;
-}
-
-.social-links a {
-    color: var(--text-color);
-    text-decoration: none;
-}
-
-.newsletter-form {
-    display: flex;
-    gap: 1rem;
-}
-
-.newsletter-form input {
-    padding: 0.5rem;
-    border: none;
-    border-radius: 5px;
-    background-color: var(--dark-color);
-    color: var(--text-color);
-}
-
-.copyright {
-    text-align: center;
-    padding-top: 2rem;
-    border-top: 1px solid rgba(255,255,255,0.1);
-}
-
-.education-value {
-    background-color: var(--footer-color);
-    border-radius: 10px;
-    padding: 2rem;
-    text-align: center;
-    color: var(--text-color);
-    transition: transform 0.3s ease;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-}
-
-.education-value:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
-}
-
-.education-value h3 {
-    color: var(--accent-color);
-    margin-bottom: 1rem;
-    font-size: 1.5rem;
-}
-
-.education-value p {
-    margin-bottom: 1.5rem;
-    line-height: 1.6;
-}
-
-/* Responsive Design */
 @media (max-width: 768px) {
     /* Navigation */
     .mobile-menu-btn {
@@ -646,6 +530,82 @@ footer {
     }
 }
 
+@media (max-width: 768px) {
+    /* Mobile Color Adjustments */
+    :root {
+        --primary-color-mobile: #2E7D32;     /* Darker green for mobile */
+        --secondary-color-mobile: #4CAF50;   /* Slightly lighter green */
+        --accent-color-mobile: #FFC107;      /* Keep the golden yellow */
+        --text-color-mobile: #FFFFFF;        /* White text */
+        --background-overlay-mobile: rgba(0, 0, 0, 0.7); /* Darker overlay for better readability */
+    }
+
+    body {
+        background-color: var(--primary-color-mobile);
+    }
+
+    nav {
+        background-color: var(--primary-color-mobile);
+    }
+
+    .mobile-menu-btn {
+        color: var(--text-color-mobile);
+    }
+
+    .slide-content {
+        background: var(--background-overlay-mobile);
+        border: 2px solid var(--secondary-color-mobile);
+    }
+
+    .benefits-grid {
+        grid-template-columns: 1fr; /* Stack benefits vertically on mobile */
+    }
+
+    .purchase-card {
+        background: rgba(255, 255, 255, 0.2);
+        border: 1px solid var(--accent-color-mobile);
+    }
+
+    /* Improve text contrast and readability */
+    .slide-content h1, 
+    .slide-content p, 
+    .benefits-card h3, 
+    .purchase-card h2 {
+        color: var(--text-color-mobile);
+        text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+    }
+
+    /* Mobile Navigation Enhancements */
+    nav ul {
+        background-color: var(--primary-color-mobile);
+        flex-direction: column;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100vh;
+        justify-content: center;
+        align-items: center;
+        transform: translateX(100%);
+        transition: transform 0.3s ease-in-out;
+        z-index: 999;
+    }
+
+    nav ul.active {
+        transform: translateX(0);
+    }
+
+    nav a {
+        font-size: 1.5rem;
+        margin: 1rem 0;
+        color: var(--text-color-mobile);
+    }
+
+    nav a:hover {
+        color: var(--accent-color-mobile);
+    }
+}
+
 /* Small Mobile Devices */
 @media (max-width: 480px) {
     #hero {
@@ -746,4 +706,142 @@ footer {
     .author-info {
         grid-template-columns: 250px 1fr;
     }
+}
+
+/* Purchase Section */
+#purchase {
+    padding: 80px 0;
+    position: relative;
+    background: rgba(27, 94, 32, 0.8); /* Darker green with transparency */
+    backdrop-filter: blur(10px);
+}
+
+.purchase-options {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    margin-top: 2rem;
+}
+
+.purchase-card {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 15px;
+    padding: 2rem;
+    backdrop-filter: blur(5px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.purchase-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+}
+
+.purchase-card ul {
+    list-style: none;
+    margin: 1.5rem 0;
+}
+
+.purchase-card li {
+    margin: 0.5rem 0;
+}
+
+/* Buttons */
+.btn {
+    display: inline-block;
+    padding: 0.8rem 1.5rem;
+    border-radius: 5px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+.btn.primary {
+    background-color: var(--primary-color);
+    color: var(--text-color);
+}
+
+.btn.secondary {
+    background-color: transparent;
+    border: 2px solid var(--text-color);
+    color: var(--text-color);
+}
+
+.btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 6px rgba(0,0,0,0.2);
+}
+
+/* Footer */
+footer {
+    background-color: var(--footer-color);
+    color: var(--text-color);
+    padding: 3rem 0;
+    margin-top: 4rem;
+}
+
+.footer-content {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+    margin-bottom: 2rem;
+}
+
+.footer-section h4 {
+    margin-bottom: 1rem;
+}
+
+.social-links {
+    display: flex;
+    gap: 1rem;
+}
+
+.social-links a {
+    color: var(--text-color);
+    text-decoration: none;
+}
+
+.newsletter-form {
+    display: flex;
+    gap: 1rem;
+}
+
+.newsletter-form input {
+    padding: 0.5rem;
+    border: none;
+    border-radius: 5px;
+    background-color: var(--dark-color);
+    color: var(--text-color);
+}
+
+.copyright {
+    text-align: center;
+    padding-top: 2rem;
+    border-top: 1px solid rgba(255,255,255,0.1);
+}
+
+.education-value {
+    background-color: var(--footer-color);
+    border-radius: 10px;
+    padding: 2rem;
+    text-align: center;
+    color: var(--text-color);
+    transition: transform 0.3s ease;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.education-value:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+.education-value h3 {
+    color: var(--light-gold);
+    margin-bottom: 1rem;
+    font-size: 1.5rem;
+}
+
+.education-value p {
+    margin-bottom: 1.5rem;
+    line-height: 1.6;
 }
